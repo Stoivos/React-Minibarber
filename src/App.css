@@ -1,0 +1,886 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #1E1E1E;
+  transition: background-color 0.5s ease;
+}
+
+p {
+  font-family: 'brödtext';
+}
+
+/* ----------- TYPSNITT ------------*/
+@font-face {
+  font-family: 'rubrik';
+  src: url('./src/assets/Fonts/glimmer of light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'brödtext';
+  src: url('./src/assets/Fonts/TT Chocolates Trial Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ----------- UTSKRIFT ------------*/
+
+@media print {
+  * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+  }
+
+  nav {
+      position: static !important;
+  }
+  
+  header {
+      margin-top: -80px !important;
+  }
+
+  .boka_nu {
+      display: none !important;
+  }
+
+  #button_behandlingar {
+      display: none !important;
+  }
+
+  #button_om_oss {
+      display: none !important;
+  }
+
+  #button_galleri {
+      display: none !important;
+  }
+
+  #sida_om_oss {
+      margin-top: 250px !important;
+  }
+
+  #sida_video_ljud {
+      display: none !important;
+  }
+
+  #lista_öppettider {
+      font-size: 1.3cap !important;
+      margin-right: 20px !important;
+  }
+
+  #öppettider_rubrik {
+      font-size: 1.6cap !important;
+  }
+
+  #instagram, #facebook, #tiktok {
+      display: none !important;
+  }
+
+}
+
+
+#pil_upp {
+  opacity: 70%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  cursor: pointer;
+  display: none;
+}
+
+
+#pil_upp img {
+  width: 80%;
+  height: 80%;
+}
+
+/*------ Ljust läge byte ------*/
+body.light-mode {
+  background-color: #bebaa1;
+}
+
+nav.light-mode {
+  background: linear-gradient(to bottom, #393730, #bebaa1);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%); 
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%); 
+}
+
+
+/* ----------- STARTSIDA ------------*/
+
+
+nav {
+  z-index: 100;
+  display: grid;
+  grid-template-areas:
+      "b l r k g";
+  grid-template-columns: 15% 15% 40% 20% 10%;
+  position: fixed; 
+  justify-items: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #090909, #1E1E1E);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%); 
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%); 
+  transition: background-color 0.5s ease;
+}
+
+.like_container {
+  display: grid;
+  grid-area: g;
+}
+
+.gillaKnapp {
+  display: inline-block;
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 0;
+}
+
+.gillaKnapp img  {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  filter: invert(1);
+  border-radius: none;
+}
+
+
+#toggle_meny {
+  height: 35px;
+  width: 100px;
+  font-family: "brödtext";
+  font-size: 1.5cap;
+  font-weight: 600;
+  background-color: rgb(224, 224, 224);
+  border: none;
+  display: block;
+  align-self: start;
+  border-radius: 28px;
+  margin-right: 70px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  grid-area: b;
+}
+
+.toggle_läge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  margin-right: 70px;
+  margin-top: 60px;
+  grid-area: b;
+}
+
+.toggle_läge img {
+  width: 80%;
+  height: 70%;
+  box-shadow: none;
+  transition: transform 0.3s ease;
+}
+
+body.light-mode .toggle_läge img {
+  transform: rotate(360deg); 
+}
+
+nav a {
+  grid-area: r;
+  text-decoration: none;
+}
+
+nav h1 {
+  color: white;
+  font-family: 'rubrik';
+  font-size: 5cap;
+  font-weight: 100;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  text-shadow: 5px 5px 5px #090909;
+}
+
+nav p {
+  color: white;
+}
+
+.logo_nav {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 8px #090909;
+  grid-area: l;
+
+}
+
+/* ------ HOMEPAGE ------ */
+
+.boka_nu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 150px;
+  height: 40px;
+  border-radius: 28px;
+  background-image: url("/src/assets/Images/guldfärg.png");
+  background-size: cover;
+  box-shadow: 3px 3px 10px #090909,
+      inset -3px -3px 10px rgba(45, 35, 14, 0.5);
+  text-shadow: 1px 1px 2px #090909;
+  grid-area: k;
+  transition: 0.4s ease, 0.4s ease;
+  filter: brightness(1.1);
+}
+
+.boka_nu:hover {
+  filter: brightness(0.9);
+  transform: scale(1.05);
+}
+
+header {
+  margin-top: 130px;
+  display: grid;
+  grid-template-areas:
+      ". a ."
+      ". a ."
+      "b c d";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 2fr 1fr;
+  background-image: url("/src/assets/Images/barbershop.png");
+  height: 639px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  justify-items: center;
+  align-items: center;
+}
+
+#header_text {
+  color: white;
+  grid-area: a;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 2.8cap;
+  font-family: 'brödtext';
+  letter-spacing: 3px;
+  text-shadow: 5px 5px 8px #090909;
+}
+
+#välkommen {
+  font-size: 2.8cap;
+  color: white;
+  letter-spacing: 5px;
+  font-weight: 600;
+}
+
+#button_behandlingar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgba(208, 200, 197, 0.9);
+  width: 100%;
+  height: 80px;
+  border-radius: 60px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  grid-area: c;
+  transition: 0.4s ease, 0.4s ease;
+}
+
+#button_behandlingar:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+#button_om_oss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgba(208, 200, 197, 0.7);
+  width: 70%;
+  height: 60px;
+  border-radius: 40px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  grid-area: b;
+  transition: 0.4s ease, 0.4s ease;
+}
+
+#button_om_oss:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+#button_galleri {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgba(208, 200, 197, 0.7);
+  width: 70%;
+  height: 60px;
+  border-radius: 40px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  grid-area: d;
+  transition: 0.4s ease, 0.4s ease;
+}
+
+#button_galleri:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+#text_knapp_behandlingar {
+  font-weight: 600;
+  font-size: 2em;
+  letter-spacing: 3px;
+  color: black;
+}
+
+header p {
+  font-size: 1.5em;
+  color: black;
+}
+
+/* ----------- BEHANDLINGAR ------------*/
+
+section {
+  width: 100%;
+  height: 769px;
+}
+
+section h2 {
+  padding-top: 60px;
+  font-size: 3.8cap;
+  letter-spacing: 5px;
+  font-weight: 500;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  text-decoration: none;
+  color: white;
+
+}
+
+#behandlingar_grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+      ". . . . ."
+      ". a b c ."
+      ". d e f ."
+      ". . . . .";
+  grid-template-columns: 0.5fr repeat(3, 1fr) 0.5fr;
+  grid-template-rows: 0.2fr repeat(2, 1fr) 0.5fr;
+  gap: 30px 30px;
+  justify-items: center;
+  align-items: center;
+}
+
+.ruta {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  line-height: 4cap;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5),
+      inset -5px -5px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Gemensamma ikoner */
+.pris {
+  font-size: 1.2cap;
+  font-weight: 400;
+}
+
+.text_behandling {
+  font-size: 2.5cap;
+  font-weight: 550;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0.3px rgb(230, 230, 230);
+}
+
+.ikon_sax {
+  height: 80px;
+  width: 80px;
+  transform: rotate(45deg);
+}
+
+.ikon_skägg {
+  height: 70px;
+  width: 70px;
+}
+
+.dubbla_ikoner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* id:n */
+#klippning {
+  grid-area: a;
+}
+
+#klippning_skägg {
+  grid-area: b;
+}
+
+#skäggtrim {
+  grid-area: c;
+}
+
+#ikon_trimmer {
+  height: 80px;
+  width: 80px;
+  transform: rotate(90deg);
+}
+
+#barnklippning {
+  grid-area: d;
+}
+
+#ikon_barn {
+  height: 90px;
+  width: 90px;
+}
+
+#seniorklippning {
+  grid-area: e;
+}
+
+#ikon_senior {
+  height: 80px;
+  width: 80px;
+}
+
+#soon {
+  grid-area: f;
+}
+
+#ikon_soon {
+  width: 120px;
+  height: auto;
+}
+
+#soon p {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+/*----------- GALLERI ------------*/
+
+#sida_galleri {
+  height: 1100px;
+}
+
+#layout_övre {
+  display: grid;
+  grid-template-areas:
+      "a b c"
+      "a d c";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 0.5fr 0.5fr;
+  gap: 30px;
+  height: 50%;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#layout_undre {
+  display: grid;
+  grid-template-areas:
+      "e f g";
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: auto;
+  gap: 30px;
+  height: 30%;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#layout_övre img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: border-radius 0.2s ease-in-out; 
+}
+
+#layout_övre img:hover {
+  border-radius: 40px;
+}
+#layout_undre img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: border-radius 0.2s ease-in-out; 
+}
+
+#layout_undre img:hover {
+  border-radius: 40px;
+}
+
+#bild_1 {
+  grid-area: a;
+  position: relative;
+}
+
+#bild_2 {
+  grid-area: b;
+}
+
+#bild_3 {
+  grid-area: c;
+}
+
+#bild_4 {
+  grid-area: d;
+}
+
+#bild_5 {
+  grid-area: e;
+}
+
+#bild_6 {
+  grid-area: f;
+}
+
+#bild_7 {
+  grid-area: g;
+}
+
+.figurtext {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+
+}
+
+
+/* ----------- OM OSS ------------*/
+
+#sida_om_oss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bakgrundsruta {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  text-align: center;
+  height: 500px;
+  width: 1100px;
+  border-radius: 28px;
+  margin-top: 60px;
+  padding-left: 40px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#bild_barberare {
+  width: 550px;
+  height: 415px;
+  border-radius: 28px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#rubrik_beskrivning {
+  font-size: 3cap;
+  font-weight: 500;
+  line-height: 50px;
+}
+
+#bakgrundsruta p {
+  line-height: 27px;
+  margin: 30px;
+}
+
+/* ----------- VIDEO OCH LJUD ------------*/
+
+#sida_video_ljud {
+  width: 100vw;
+}
+
+table {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  height: auto;
+  text-align: center;
+  border-collapse: separate;
+  margin-top: 50px;
+}
+#ljud_container {
+  padding-top: 320px;
+  width: 100%;
+}
+table tr {
+  display: flex;
+  width: 100vw;
+}
+td,th {
+  display: inline-block;
+  width: 50%;
+  color: white;
+  font-family: "brödtext";
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  padding-top: 20px;
+}
+
+#video_container {
+  width: 100%;
+}
+#placering_knapp {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+#test_knapp, #förstora_text {
+  height: 30px;
+  width: 120px;
+  margin-top: 30px;
+}
+
+
+/* ----------- FOOTER ------------*/
+
+#footer {
+  background-color: #1E1B1B;
+  height: 420px;
+  width: 100%;
+}
+
+#layout_footer {
+  width: 100%;
+  height: 420px;
+  display: grid;
+  grid-template-areas:
+      "a b k c l d .";
+  grid-template-columns: 0.5fr 1fr 0.1fr 1fr 0.1fr 1fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  justify-content: center;
+}
+
+.sektion {
+  margin-top: 40px;
+}
+
+#logo_footer {
+  margin-left: 100px;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 8px #090909;
+  grid-area: a;
+}
+
+#kontakt_text {
+  font-family: "brödtext";
+  text-align: center;
+  color: white;
+  line-height: 40px;
+  font-size: 1.8cap;
+  grid-area: b;
+}
+
+#mail {
+  color: white;
+}
+
+#kontakt_rubrik {
+  font-size: 2.1cap;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#social_media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  grid-area: b;
+}
+
+#instagram {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-image: url(/src/assets/Images/ikoner/ig.png);
+  background-size: contain;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+#facebook {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url(/src/assets/Images/ikoner/fb.png);
+  background-size: contain;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+#tiktok {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-image: url(/src/assets/Images/ikoner/tt.png);
+  background-size: contain;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+
+#linje1 {
+  align-self: center;
+  justify-self: end;
+  background-color: white;
+  height: 300px;
+  width: 1px;
+  margin-top: 30px;
+  grid-area: k;
+}
+
+#linje2 {
+  align-self: center;
+  justify-self: start;
+  background-color: white;
+  height: 300px;
+  width: 1px;
+  margin-top: 30px;
+  grid-area: l;
+}
+
+#öppettider_rubrik {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 2.6cap;
+  font-weight: 700;
+  grid-area: c;
+}
+
+#lista_öppettider {
+  text-align: center;
+  list-style: none;
+  font-family: "brödtext";
+  font-size: 1.7cap;
+  color: white;
+  line-height: 30px;
+  margin-right: 40px;
+  margin-top: 20px;
+  grid-area: c;
+}
+
+.dag {
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+#hitta_hit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: d;
+}
+
+#hitta_hit_rubrik {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 2.3cap;
+  font-weight: 700;
+  grid-area: d;
+}
+
+#adress {
+  margin-top: 20px;
+  color: white;
+}
+
+.vägvisning {
+  background-image: url(/src/assets/Images/vägvisning.png);
+  background-size: contain;
+  width: 240px;
+  height: 240px;
+  border-radius: 28px;
+  margin-top: 20px;
+  grid-area: d;
+}
+
+#adress_ikon {
+  display: flex;
+  gap: 10px;
+}
+
+#ikon_pin {
+  margin-top: 10px;
+  height: 30px;
+  width: auto;
+}
+
+#adress {
+  font-family: "brödtext";
+  font-size: 1.7cap;
+}
+
+#copyright {
+  font-size: 1cap;
+  color: white;
+  text-align: center;
+  margin-top: 85px;
+}
